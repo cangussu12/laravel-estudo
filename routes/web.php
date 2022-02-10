@@ -25,21 +25,12 @@ Route::get('/login', function() { return 'Login';})->name('site.login');
 
 
 Route::prefix('/app')->group(function() {
-    Route::get('/clientes', function() { return 'Clientes';});
-    Route::get('/fornecedores', function() { return 'Fornecedores';});
-    Route::get('/produtos', function() { return 'Produtos';});
+    Route::get('/clientes', function() { return 'Clientes';})->name('app.clientes');
+    Route::get('/fornecedores', [\App\Http\Controllers\FornecedorController::class, 'index'])->name('app.fornecedores');
+    Route::get('/produtos', function() { return 'Produtos';})->name('app.produtos');
 });
+Route::get('/teste/{p1}/{p2}',[\App\Http\Controllers\testeController::class, 'teste'])->name('teste');
 
-Route::get('/rota1', function() {
-    echo 'rota 1';
-})->name('site.rota1');
-    
-Route::get('/rota2', function() {
-    return redirect()->route('site.rota1');
-})->name('site.rota2');
-
-
-//Route::redirect('/rota2', '/rota1');
 
 Route::fallback(function() {
     echo 'A rota acessada não existe. <a href="'.route('site.index').'">clique aqui</a> para ir para a pagina inicial.';
