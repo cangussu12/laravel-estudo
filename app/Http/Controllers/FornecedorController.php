@@ -7,7 +7,20 @@ use Illuminate\Http\Request;
 class FornecedorController extends Controller
 {
     public function index() {
-        $fornecedores = ['teste 1','teste2','teste3', 'teste4', 'teste5', 'teste6', 'teste7', 'teste8', 'teste9', 'teste10', '12'];
+        $fornecedores = [
+            0 => [
+                'nome' => 'Fornecedor 1',
+                'status' => 'N',
+                'cnpj' => null
+            ],
+
+             1 => [
+                'nome' => 'Fornecedor 2',
+                'status' => 'S'
+             ]
+        ];
+
         return view('app.fornecedor.index', compact('fornecedores'));
+       
     }
 }
